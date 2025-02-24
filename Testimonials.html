@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials - PenPal AI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.html"><img src="images/Logo to win PS5.png" alt="PenPal AI Logo" class="logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="Testimonials.html" class="active">Testimonials</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section-highlight">
+            <h1>What Our Users Say</h1>
+            <p>Don't just take our word for it—see what our satisfied customers have to say about PenPal AI.</p>
+
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <p>"PenPal AI has completely transformed how I approach my assignments. It's like having a personal assistant!"</p>
+                    <h4>- Sarah L., College Student</h4>
+                </div>
+                <div class="testimonial">
+                    <p>"I never thought AI could make writing so effortless. PenPal AI is a game-changer!"</p>
+                    <h4>- James R., Freelance Writer</h4>
+                </div>
+                <div class="testimonial">
+                    <p>"Fast, reliable, and incredibly helpful. PenPal AI has saved me so much time."</p>
+                    <h4>- Emma W., High School Teacher</h4>
+                </div>
+                <div class="testimonial">
+                    <p>"An indispensable tool for students and professionals alike. Highly recommended!"</p>
+                    <h4>- Michael B., Graduate Student</h4>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section id="chatbot" class="chatbot-container">
+        <button id="chatbot-toggle" class="chatbot-btn">💬 Chat with us</button>
+        <div id="chatbox" class="chatbox" style="display: none;">
+            <div class="chat-header">PenPal AI Support <button onclick="toggleChatbot()" class="close-chat">&times;</button></div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type your message..." aria-label="Chat input">
+                <button onclick="sendMessage()" class="send-btn">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="special-deals" class="special-deals-button">
+        <button onclick="toggleDealsSidebar()">🎁 Special Deals</button>
+    </section>
+
+    <aside id="deals-sidebar" class="deals-sidebar">
+        <div class="deals-header">
+            <h3>🎁 Special Deals</h3>
+            <button onclick="toggleDealsSidebar()" class="close-btn">&times;</button>
+        </div>
+        <ul class="deals-list">
+            <li><strong>10% Off:</strong> Use code <code>GiveSAMSAM1fullpoints</code> at checkout!</li>
+            <li><strong>Free Shipping:</strong> On orders over $50.</li>
+            <li><strong>Bundle Offer:</strong> Buy 2, get 1 free!</li>
+        </ul>
+    </aside>
+
+    <footer>
+        <p>DISCLAIMER: This website was created as part of an educational Hack-AI-thon project hosted by All Star Code. The products displayed are AI-generated prototypes and are not available for purchase.</p>
+    </footer>
+
+    <script>
+        function toggleChatbot() {
+            const chatbox = document.getElementById("chatbox");
+            chatbox.style.display = chatbox.style.display === "none" ? "block" : "none";
+        }
+
+        const chatbotToggle = document.getElementById("chatbot-toggle");
+        chatbotToggle.addEventListener("click", toggleChatbot);
+
+        function sendMessage() {
+            const userInput = document.getElementById("userInput").value.trim();
+            if (!userInput) return;
+
+            const userMsg = document.createElement("div");
+            userMsg.className = "user-msg";
+            userMsg.textContent = `You: ${userInput}`;
+            document.getElementById("chatMessages").appendChild(userMsg);
+
+            const botReply = document.createElement("div");
+            botReply.className = "bot-msg";
+            botReply.textContent = "Support Bot: Thank you for your inquiry! We'll respond shortly.";
+            setTimeout(() => document.getElementById("chatMessages").appendChild(botReply), 500);
+
+            document.getElementById("userInput").value = "";
+            document.getElementById("chatMessages").scrollTop = document.getElementById("chatMessages").scrollHeight;
+        }
+
+        function toggleDealsSidebar() {
+            const sidebar = document.getElementById("deals-sidebar");
+            sidebar.classList.toggle("active");
+        }
+    </script>
+
+    <style>
+        nav ul li a {
+            color: #f0f0f0;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #6dd5ed;
+            color: #121212;
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .testimonial {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            color: #e0e0e0;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .testimonial h4 {
+            font-weight: bold;
+            color: #6dd5ed;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - PenPal AI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.html"><img src="images/Logo to win PS5.png" alt="PenPal AI Logo" class="logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html" class="active">Features</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="Testimonials.html" class="active">Testimonials</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section-highlight">
+            <h1>Features of PenPal AI</h1>
+            <p>Explore the cutting-edge features that make PenPal AI the perfect assistant for students, educators, and professionals alike.</p>
+
+            <ul class="features-list">
+                <li><strong>Personalized Handwriting:</strong> Customize your AI-generated handwriting to match your natural writing style.</li>
+                <li><strong>Fast Note Transcription:</strong> Quickly convert spoken or typed words into neat, handwritten notes.</li>
+                <li><strong>Eco-Friendly Materials:</strong> Our devices are crafted using sustainable and environmentally friendly materials.</li>
+                <li><strong>Multi-Device Integration:</strong> Seamlessly connect with tablets, laptops, and smartphones for flexible use.</li>
+                <li><strong>Secure Data Handling:</strong> Your information is protected with state-of-the-art encryption protocols.</li>
+                <li><strong>Customizable Ink Colors:</strong> Choose from a variety of digital ink colors to suit your preferences.</li>
+                <li><strong>Long Battery Life:</strong> Stay productive with extended battery support for all-day use.</li>
+            </ul>
+
+            <img src="images/Logo to win PS5.png" alt="PenPal AI Features" class="product-image">
+            <a href="product.html" class="btn">View Product</a>
+        </section>
+    </main>
+
+    <section id="chatbot" class="chatbot-container">
+        <button id="chatbot-toggle" class="chatbot-btn">💬 Chat with us</button>
+        <div id="chatbox" class="chatbox">
+            <div class="chat-header">PenPal AI Support</div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type your message..." aria-label="Chat input">
+                <button onclick="sendMessage()" class="send-btn">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <aside id="deals-sidebar" class="deals-sidebar">
+        <div class="deals-header">
+            <h3>🎁 Special Deals</h3>
+            <button onclick="toggleDealsSidebar()" class="close-btn">&times;</button>
+        </div>
+        <ul class="deals-list">
+            <li><strong>10% Off:</strong> Use code <code>GiveSAMSAM1fullpoints</code> at checkout!</li>
+            <li><strong>Free Shipping:</strong> On orders over $50.</li>
+            <li><strong>Bundle Offer:</strong> Buy 2, get 1 free!</li>
+        </ul>
+    </aside>
+
+    <section id="special-deals" class="special-deals-button">
+        <button onclick="toggleDealsSidebar()">🎁 Special Deals</button>
+    </section>
+
+    <footer>
+        <p>DISCLAIMER: This website was created as part of an educational Hack-AI-thon project hosted by All Star Code. The products displayed are AI-generated prototypes and are not available for purchase.</p>
+    </footer>
+
+    <script>
+        const chatbotToggle = document.getElementById("chatbot-toggle");
+        const chatbox = document.getElementById("chatbox");
+        const chatMessages = document.getElementById("chatMessages");
+
+        chatbotToggle.addEventListener("click", () => {
+            chatbox.style.display = chatbox.style.display === "none" ? "block" : "none";
+        });
+
+        function sendMessage() {
+            const userInput = document.getElementById("userInput").value.trim();
+            if (!userInput) return;
+
+            const userMsg = document.createElement("div");
+            userMsg.className = "user-msg";
+            userMsg.textContent = `You: ${userInput}`;
+            chatMessages.appendChild(userMsg);
+
+            const botReply = document.createElement("div");
+            botReply.className = "bot-msg";
+            botReply.textContent = "Support Bot: Thank you for your inquiry! We'll respond shortly.";
+            setTimeout(() => chatMessages.appendChild(botReply), 500);
+
+            document.getElementById("userInput").value = "";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function toggleDealsSidebar() {
+            const sidebar = document.getElementById("deals-sidebar");
+            sidebar.classList.toggle("active");
+        }
+    </script>
+
+    <style>
+        .section-highlight {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #6dd5ed, #8e44ad);
+            color: white;
+            border-radius: 12px;
+            margin: 20px auto;
+            max-width: 900px;
+        }
+
+        .features-list {
+            text-align: left;
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 0 20px;
+            list-style: disc;
+            color: #f0f0f0;
+        }
+
+        .features-list li {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .product-image {
+            width: 25%;
+            max-width: 500px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #8e44ad;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #5d3fd3;
+        }
+    </style>
+</body>
+</html>

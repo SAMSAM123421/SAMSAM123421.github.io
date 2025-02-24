@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - PenPal AI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.html"><img src="images/Logo to win PS5.png" alt="PenPal AI Logo" class="logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="Testimonials.html">Testimonials</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section-highlight">
+            <h1>Checkout</h1>
+            <p>Complete your purchase of the <strong>PenPal AI</strong> for <strong id="price">$83.92</strong>.</p>
+
+            <form class="checkout-form" onsubmit="displayConfirmationImage(event)">
+                <h2>Billing Information</h2>
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="address">Shipping Address:</label>
+                <input type="text" id="address" name="address" placeholder="Enter your shipping address" required>
+
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" placeholder="Enter your city" required>
+
+                <label for="zip">ZIP Code:</label>
+                <input type="text" id="zip" name="zip" placeholder="Enter ZIP code" required>
+
+                <label for="discount">Discount Code (optional):</label>
+                <div class="discount-input-container">
+                    <input type="text" id="discount" name="discount" placeholder="Apply code">
+                    <button type="button" class="btn small-btn" onclick="applyDiscount()">Enter</button>
+                </div>
+
+                <div class="price-summary">
+                    <p><strong>Total Price:</strong> <span id="totalPrice">$83.92</span></p>
+                </div>
+
+                <label for="notes">Order Notes (optional):</label>
+                <textarea id="notes" name="notes" placeholder="Additional instructions..." rows="4"></textarea>
+
+                <button type="submit" class="btn">Place Order</button>
+                <div id="confirmation-image-container" style="display: none; margin-top: 20px; text-align: center;">
+                    <img src="images/Success.png" alt="Order Confirmed" style="max-width: 300px; border-radius: 10px;">
+                    <p>✅ Your order has been placed successfully!</p>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <section id="chatbot" class="chatbot-container">
+        <button id="chatbot-toggle" class="chatbot-btn">💬 Chat with us</button>
+        <div id="chatbox" class="chatbox" style="display: none;">
+            <div class="chat-header">PenPal AI Support <button onclick="toggleChatbot()" class="close-chat">&times;</button></div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type your message..." aria-label="Chat input">
+                <button onclick="sendMessage()" class="send-btn">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="special-deals" class="special-deals-button">
+        <button onclick="toggleDealsSidebar()">🎁 Special Deals</button>
+    </section>
+
+    <aside id="deals-sidebar" class="deals-sidebar">
+        <div class="deals-header">
+            <h3>🎁 Special Deals</h3>
+            <button onclick="toggleDealsSidebar()" class="close-btn">&times;</button>
+        </div>
+        <ul class="deals-list">
+            <li><strong>10% Off:</strong> Use code <code>GiveSAMSAM1fullpoints</code> at checkout!</li>
+            <li><strong>Free Shipping:</strong> On orders over $50.</li>
+            <li><strong>Bundle Offer:</strong> Buy 2, get 1 free!</li>
+        </ul>
+    </aside>
+
+    <footer>
+        <p>DISCLAIMER: This website was created as part of an educational Hack-AI-thon project hosted by All Star Code. The products displayed are AI-generated prototypes and are not available for purchase.</p>
+    </footer>
+
+    <script>
+        const originalPrice = 83.92;
+
+        function applyDiscount() {
+            const discountInput = document.getElementById("discount").value.trim();
+            const priceDisplay = document.getElementById("totalPrice");
+
+            if (discountInput === "GiveSAMSAM1fullpoints") {
+                const discountedPrice = (originalPrice * 0.9).toFixed(2); // 10% discount
+                priceDisplay.textContent = `$${discountedPrice} (10% Discount Applied!)`;
+                alert(`✅ Success! 10% discount applied. New price: $${discountedPrice}`);
+            } else if (discountInput !== "") {
+                priceDisplay.textContent = `$${originalPrice.toFixed(2)}`;
+                alert("❌ Invalid discount code. Please try again.");
+            } else {
+                priceDisplay.textContent = `$${originalPrice.toFixed(2)}`;
+            }
+        }
+
+        function displayConfirmationImage(event) {
+            event.preventDefault();
+            const confirmationContainer = document.getElementById("confirmation-image-container");
+            confirmationContainer.style.display = "block";
+            confirmationContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleChatbot() {
+            const chatbox = document.getElementById("chatbox");
+            chatbox.style.display = chatbox.style.display === "none" ? "block" : "none";
+        }
+
+        const chatbotToggle = document.getElementById("chatbot-toggle");
+        chatbotToggle.addEventListener("click", toggleChatbot);
+
+        function sendMessage() {
+            const userInput = document.getElementById("userInput").value.trim();
+            if (!userInput) return;
+
+            const userMsg = document.createElement("div");
+            userMsg.className = "user-msg";
+            userMsg.textContent = `You: ${userInput}`;
+            document.getElementById("chatMessages").appendChild(userMsg);
+
+            const botReply = document.createElement("div");
+            botReply.className = "bot-msg";
+            botReply.textContent = "Support Bot: Thank you for your inquiry! We'll respond shortly.";
+            setTimeout(() => document.getElementById("chatMessages").appendChild(botReply), 500);
+
+            document.getElementById("userInput").value = "";
+            document.getElementById("chatMessages").scrollTop = document.getElementById("chatMessages").scrollHeight;
+        }
+
+        function toggleDealsSidebar() {
+            const sidebar = document.getElementById("deals-sidebar");
+            sidebar.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>

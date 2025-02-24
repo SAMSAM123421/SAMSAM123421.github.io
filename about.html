@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - PenPal AI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.html"><img src="images/Logo to win PS5.png" alt="PenPal AI Logo" class="logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="Testimonials.html" class="active">Testimonials</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section-highlight">
+            <h1>About PenPal AI</h1>
+            <p>PenPal AI was founded with a mission to revolutionize the way students complete their handwritten assignments. By combining advanced artificial intelligence with personalized handwriting technology, we aim to make academic tasks easier, faster, and more engaging.</p>
+            <p>Our dedicated team of engineers, educators, and designers believes that technology should be an enabler for students, helping them focus on learning rather than repetitive handwriting tasks.</p>
+            <img src="images/Logo to win PS5.png" alt="PenPal AI Team" class="product-image">
+            <a href="contact.html" class="btn">Contact Us</a>
+        </section>
+    </main>
+
+    <section id="chatbot" class="chatbot-container">
+        <button id="chatbot-toggle" class="chatbot-btn">💬 Chat with us</button>
+        <div id="chatbox" class="chatbox">
+            <div class="chat-header">PenPal AI Support</div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type your message..." aria-label="Chat input">
+                <button onclick="sendMessage()" class="send-btn">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <aside id="deals-sidebar" class="deals-sidebar">
+        <div class="deals-header">
+            <h3>🎁 Special Deals</h3>
+            <button onclick="toggleDealsSidebar()" class="close-btn">&times;</button>
+        </div>
+        <ul class="deals-list">
+            <li><strong>10% Off:</strong> Use code <code>GiveSAMSAM1fullpoints</code> at checkout!</li>
+            <li><strong>Free Shipping:</strong> On orders over $50.</li>
+            <li><strong>Bundle Offer:</strong> Buy 2, get 1 free!</li>
+        </ul>
+    </aside>
+
+    <section id="special-deals" class="special-deals-button">
+        <button onclick="toggleDealsSidebar()">🎁 Special Deals</button>
+    </section>
+
+    <footer>
+        <p>DISCLAIMER: This website was created as part of an educational Hack-AI-thon project hosted by All Star Code. The products displayed are AI-generated prototypes and are not available for purchase.</p>
+    </footer>
+
+    <script>
+        const chatbotToggle = document.getElementById("chatbot-toggle");
+        const chatbox = document.getElementById("chatbox");
+        const chatMessages = document.getElementById("chatMessages");
+
+        chatbotToggle.addEventListener("click", () => {
+            chatbox.style.display = chatbox.style.display === "none" ? "block" : "none";
+        });
+
+        function sendMessage() {
+            const userInput = document.getElementById("userInput").value.trim();
+            if (!userInput) return;
+
+            const userMsg = document.createElement("div");
+            userMsg.className = "user-msg";
+            userMsg.textContent = `You: ${userInput}`;
+            chatMessages.appendChild(userMsg);
+
+            const botReply = document.createElement("div");
+            botReply.className = "bot-msg";
+            botReply.textContent = "Support Bot: Thank you for your inquiry! We'll respond shortly.";
+            setTimeout(() => chatMessages.appendChild(botReply), 500);
+
+            document.getElementById("userInput").value = "";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function toggleDealsSidebar() {
+            const sidebar = document.getElementById("deals-sidebar");
+            sidebar.classList.toggle("active");
+        }
+    </script>
+
+    <style>
+        .section-highlight {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #6dd5ed, #8e44ad);
+            color: white;
+            border-radius: 12px;
+            margin: 20px auto;
+            max-width: 900px;
+        }
+
+        .product-image {
+            width: 25%;
+            max-width: 500px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #8e44ad;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #5d3fd3;
+        }
+    </style>
+</body>
+</html>
+
